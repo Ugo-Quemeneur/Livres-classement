@@ -1,4 +1,4 @@
-let options = {
+let options = { /* paramètres pour générer la date au format français */
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", jsonOnLoad);
 
 /* ♠ Appel du json ♠ */
 function jsonOnLoad() {
-    fetch("Data/books.json")
+    fetch("./Data/books.json")
         .then((response) => { /*Réponse*/
             return response.json(); /*en json*/
         })
@@ -67,14 +67,14 @@ function createBooks(_books) {
     authorsList.sort(); //alphabétique ►
     categoryList.sort();
 
-    for (let i = 0; i < authorsList.length; i++) {
+    for (let i = 0; i < authorsList.length; i++) { /* Création des authors dans la liste déroulante */
         let option = document.createElement("option");
         option.value = authorsList[i];
         option.innerText = authorsList[i];
         listAuthors.appendChild(option);
     }
 
-    for (let h = 0; h < categoryList.length; h++) {
+    for (let h = 0; h < categoryList.length; h++) { /* Création des categories dans la liste déroulante */
         let option = document.createElement('option');
         option.value = categoryList[h];
         option.innerText = categoryList[h];
@@ -113,7 +113,7 @@ function showBooks(_books) {
         let description;
         let shortDescription;
 
-        if (_books[y].shortDescription == undefined || _books[y].shortDescription == null) {
+        if (_books[y].shortDescription == undefined || _books[y].shortDescription == null) { /* Si le livre y n'a pas de shortDescription */
             if (_books[y].longDescription == undefined || _books[y].longDescription == null) {
                 shortDescription = "Pas de description";
             }
@@ -125,7 +125,7 @@ function showBooks(_books) {
             shortDescription = _books[y].shortDescription;
         }
 
-        if (_books[y].longDescription == undefined || _books[y].longDescription == null) {
+        if (_books[y].longDescription == undefined || _books[y].longDescription == null) { /* Si le livre y n'a pas de longDescription */
             description = "Pas de description";
         }
         else {
@@ -133,13 +133,13 @@ function showBooks(_books) {
         }
 
         if (_books[y].longDescription > 100) {
-            shortDescription = shortDescription.substring(0, 100) + " (...)";
+            shortDescription = shortDescription.substring(0, 100) + " (...)"; /* • afficher uniquement les 100 premiers caractères avec des pts de suspension • */
         }
 
         let nb_Isbn =_books[y].isbn;
         let nbPages = _books[y].pageCount;
         let datePubli;
-        try { /* test qui agit qd meme, un if qui gere les erreurs */
+        try { /* • test qui agit qd meme, un if qui gere les erreurs • */
             datePubli = new Date(_books[y].publishedDate.dt_txt).toLocaleDateString("fr-FR", options);
         }
         catch (error) {
@@ -162,7 +162,7 @@ function chargeByAuthor() {
     console.log(strAuthor);
 
     let bookByAuthor = new Array();
-    if (strAuthor == null || strAuthor == undefined) { /* pq vide ? Pcq dans la liste, il y a le vide */
+    if (strAuthor == null || strAuthor == undefined) { /* Dans la liste, il y a une case blanche */
         return showBooks(booksList); /* ♦ Liste des livres ♦ */
     }
     else {

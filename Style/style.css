@@ -71,3 +71,12 @@ img {
   font-size: 1em;
 
 }
+
+#search {
+  float: right;
+  width: 15%
+}
+
+#searchbutton {
+  float: right;
+}
