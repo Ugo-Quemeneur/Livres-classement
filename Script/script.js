@@ -17,7 +17,6 @@ let listCategories = document.getElementById("listCategories");
 let listBooks = document.getElementById("booksList");
 
 
-
 /* • event sur le changement d'auteur • */
 listAuthors.addEventListener("change", chargeByAuthor);
 listCategories.addEventListener("change", chargeByCategories); // Ajouté
@@ -57,7 +56,7 @@ function createBooks(_books) {
 
             /* ◘ On doit faire similaire pour les categories ◘ */
 
-            if (categoryList.indexOf(categories) == -1) {/* vérifier que la catégorie n'est pas déjà dans ma liste*/
+            if (categoryList.indexOf(categories) == -1) {/* vérifier que la catégorie n'est pas déjà dans ma liste */
                 categoryList.push(categories);
             }
         }
@@ -196,7 +195,7 @@ function chargeByCategories() { /* meme fonctionnement que pour les auteurs */
             let book = booksList[x]; /* on sort le livre */
 
             if (book.categories.indexOf(strCategories) != -1) { /* ◘ qui correspond à la catégorie souhaitée ◘ */
-                bookByCategories.push(book); /* Dans la variable ?*/
+                bookByCategories.push(book); /* Dans la variable */
             }
 
         }
